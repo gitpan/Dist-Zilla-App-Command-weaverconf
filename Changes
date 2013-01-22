@@ -1,2 +1,9 @@
-0.01  Sun, 30 May 2010 23:35:51 +0200
+Revision history for Dist-Zilla-App-Command-weaverconf
+
+0.02      2013-01-21 16:22:47 PST-0800
+  * Dist::Zilla::App::Command::weaverconf::SExpGen renamed to
+    Dist::Zilla::App::CommandHelper::weaverconf::SExpGen to resolve various
+    warnings (RT#67379)
+
+0.01  2010-05-30 23:35:51 +0200
   * Initial release.

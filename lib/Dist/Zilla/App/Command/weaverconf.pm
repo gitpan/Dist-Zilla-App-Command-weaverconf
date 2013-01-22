@@ -1,9 +1,11 @@
 package Dist::Zilla::App::Command::weaverconf;
+# git description: 0.01-5-g5f6b1c8
+
 BEGIN {
   $Dist::Zilla::App::Command::weaverconf::AUTHORITY = 'cpan:FLORA';
 }
-BEGIN {
-  $Dist::Zilla::App::Command::weaverconf::VERSION = '0.01';
+{
+  $Dist::Zilla::App::Command::weaverconf::VERSION = '0.02';
 }
 # ABSTRACT: Extract your distribution's Pod::Weaver configuration
 
@@ -13,7 +15,7 @@ use JSON::Any;
 use List::AllUtils qw(first);
 use MooseX::Types::Moose qw(Str CodeRef);
 use MooseX::Types::Structured 0.20 qw(Map);
-use aliased 'Dist::Zilla::App::Command::weaverconf::SExpGen';
+use aliased 'Dist::Zilla::App::CommandHelper::weaverconf::SExpGen';
 use namespace::autoclean;
 
 
@@ -111,7 +113,10 @@ sub print {
 1;
 
 __END__
+
 =pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -165,14 +170,13 @@ a plist of lists of plists
 
 =head1 AUTHOR
 
-  Florian Ragwitz <rafl@debian.org>
+Florian Ragwitz <rafl@debian.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
