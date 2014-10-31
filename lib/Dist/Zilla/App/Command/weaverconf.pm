@@ -1,23 +1,53 @@
 package Dist::Zilla::App::Command::weaverconf;
-# git description: 0.01-5-g5f6b1c8
-
-BEGIN {
-  $Dist::Zilla::App::Command::weaverconf::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $Dist::Zilla::App::Command::weaverconf::VERSION = '0.02';
-}
+# git description: v0.02-7-g5ef7709
+$Dist::Zilla::App::Command::weaverconf::VERSION = '0.03';
 # ABSTRACT: Extract your distribution's Pod::Weaver configuration
 
 use Dist::Zilla::App -command;
 use Moose 0.91;
-use JSON::Any;
-use List::AllUtils qw(first);
+use JSON::MaybeXS;
+use List::Util qw(first);
 use MooseX::Types::Moose qw(Str CodeRef);
 use MooseX::Types::Structured 0.20 qw(Map);
-use aliased 'Dist::Zilla::App::CommandHelper::weaverconf::SExpGen';
 use namespace::autoclean;
 
+#pod =head1 SYNOPSIS
+#pod
+#pod     $ dzil weaverconf
+#pod     {
+#pod         "collectors" : [
+#pod             { "command" : "attr",   "new_command" : "head2" },
+#pod             { "command" : "method", "new_command" : "head2" },
+#pod             { "command" : "func",   "new_command" : "head2" },
+#pod             { "command" : "type",   "new_command" : "head2" }
+#pod         ],
+#pod         "transformers" : [
+#pod             {
+#pod                 "name" : "Pod::Elemental::Transformer::List",
+#pod                 "args" : { "format_name" : "list" }
+#pod             }
+#pod         ]
+#pod
+#pod     }
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This command will extract the Pod::Weaver configuration from a
+#pod directory containing a L<Dist::Zilla> distribution.
+#pod
+#pod The results will be serialized in the requested format, and written to
+#pod C<STDOUT>.
+#pod
+#pod The option C<-f> or C<--format> may be used to request a particular
+#pod output format. The following formats are currently available:
+#pod
+#pod =for :list
+#pod * json
+#pod the default
+#pod * lisp
+#pod a plist of lists of plists
+#pod
+#pod =cut
 
 has formatters => (
     traits  => [qw(Hash)],
@@ -33,8 +63,8 @@ has formatters => (
 sub _build_formatters {
     my ($self) = @_;
     return {
-        lisp => sub { SExpGen->new->visit($_[0]) },
-        json => sub { JSON::Any->new->to_json($_[0]) },
+        lisp => sub { Dist::Zilla::App::CommandHelper::weaverconf::SExpGen->new->visit($_[0]) },
+        json => sub { encode_json($_[0]) },
     };
 }
 
@@ -116,11 +146,15 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
 Dist::Zilla::App::Command::weaverconf - Extract your distribution's Pod::Weaver configuration
+
+=head1 VERSION
+
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -174,9 +208,15 @@ Florian Ragwitz <rafl@debian.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Florian Ragwitz.
+This software is copyright (c) 2010 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
+
+=head1 CONTRIBUTOR
+
+=for stopwords Karen Etheridge
+
+Karen Etheridge <ether@cpan.org>
 
 =cut
