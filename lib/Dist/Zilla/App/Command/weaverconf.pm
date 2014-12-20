@@ -1,11 +1,11 @@
 package Dist::Zilla::App::Command::weaverconf;
-# git description: v0.02-7-g5ef7709
-$Dist::Zilla::App::Command::weaverconf::VERSION = '0.03';
+# git description: v0.03-2-gf752598
+{ our $VERSION = '0.04'; }
 # ABSTRACT: Extract your distribution's Pod::Weaver configuration
 
 use Dist::Zilla::App -command;
 use Moose 0.91;
-use JSON::MaybeXS;
+use JSON::MaybeXS ();
 use List::Util qw(first);
 use MooseX::Types::Moose qw(Str CodeRef);
 use MooseX::Types::Structured 0.20 qw(Map);
@@ -64,7 +64,7 @@ sub _build_formatters {
     my ($self) = @_;
     return {
         lisp => sub { Dist::Zilla::App::CommandHelper::weaverconf::SExpGen->new->visit($_[0]) },
-        json => sub { encode_json($_[0]) },
+        json => sub { JSON::MaybeXS->new(utf8 => 1, pretty => 1, canonical => 1)->encode($_[0]) },
     };
 }
 
@@ -154,7 +154,7 @@ Dist::Zilla::App::Command::weaverconf - Extract your distribution's Pod::Weaver 
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

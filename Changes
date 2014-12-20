@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-App-Command-weaverconf
 
+0.04      2014-12-20 02:47:50Z
+          - dump JSON in a more human-readable format
+
 0.03      2014-10-31 06:05:16Z
           - use JSON::MaybeXS instead of JSON::Any
           - reduce the number of prereqs used
