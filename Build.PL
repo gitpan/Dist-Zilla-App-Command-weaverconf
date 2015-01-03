@@ -71,14 +71,14 @@ EOW
       "build_requires" => {},
       "configure_requires" => {
         "Module::Build::Tiny" => "0.039",
-        "perl" => "5.006"
+        "perl" => "5.004"
       },
       "dist_abstract" => "Extract your distribution's Pod::Weaver configuration",
       "dist_author" => [
         "Florian Ragwitz <rafl\@debian.org>"
       ],
       "dist_name" => "Dist-Zilla-App-Command-weaverconf",
-      "dist_version" => "0.04",
+      "dist_version" => "0.05",
       "license" => "perl",
       "module_name" => "Dist::Zilla::App::Command::weaverconf",
       "recommends" => {},

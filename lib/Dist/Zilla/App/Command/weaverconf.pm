@@ -1,8 +1,6 @@
-package Dist::Zilla::App::Command::weaverconf;
-# git description: v0.03-2-gf752598
-{ our $VERSION = '0.04'; }
+package Dist::Zilla::App::Command::weaverconf; # git description: v0.04-1-ga3e3502
 # ABSTRACT: Extract your distribution's Pod::Weaver configuration
-
+$Dist::Zilla::App::Command::weaverconf::VERSION = '0.05';
 use Dist::Zilla::App -command;
 use Moose 0.91;
 use JSON::MaybeXS ();
@@ -154,7 +152,7 @@ Dist::Zilla::App::Command::weaverconf - Extract your distribution's Pod::Weaver 
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
